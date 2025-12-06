@@ -65,21 +65,94 @@
           </div>
         </div>
       </article>
+      <article class="listing page-2">
+        <img src="https://images.pexels.com/photos/703140/pexels-photo-703140.jpeg" alt="">
+        <div class="listing-body">
+          <h3><a href="property.html">2BHK Modern Apartment</a></h3>
+          <p class="muted">Mumbai • 1100 sq.ft • Sea View</p>
+          <div class="listing-footer">
+            <span class="price">₹1.2 Cr</span>
+            <a href="property.html" class="btn-sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="listing page-2">
+        <img src="https://images.pexels.com/photos/259580/pexels-photo-259580.jpeg" alt="">
+        <div class="listing-body">
+          <h3><a href="property.html">4BHK Luxury Villa</a></h3>
+          <p class="muted">Hyderabad • 3200 sq.ft • Gated Community</p>
+          <div class="listing-footer">
+            <span class="price">₹2.4 Cr</span>
+            <a href="property.html" class="btn-sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="listing page-2">
+        <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg" alt="">
+        <div class="listing-body">
+          <h3><a href="property.html">Farm Plot with Cottage</a></h3>
+          <p class="muted">Pune • 6000 sq.ft • Eco Living</p>
+          <div class="listing-footer">
+            <span class="price">₹86 Lakh</span>
+            <a href="property.html" class="btn-sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="listing page-3">
+        <img src="https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg" alt="">
+        <div class="listing-body">
+          <h3><a href="property.html">Compact Studio Apartment</a></h3>
+          <p class="muted">Delhi • 550 sq.ft • Furnished</p>
+          <div class="listing-footer">
+            <span class="price">₹42 Lakh</span>
+            <a href="property.html" class="btn-sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="listing page-3">
+        <img src="https://images.pexels.com/photos/164522/pexels-photo-164522.jpeg" alt="">
+        <div class="listing-body">
+          <h3><a href="property.html">3BHK Corner Flat</a></h3>
+          <p class="muted">Noida • 1500 sq.ft • Park Facing</p>
+          <div class="listing-footer">
+            <span class="price">₹78 Lakh</span>
+            <a href="property.html" class="btn-sm">Details</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="listing page-3">
+        <img src="https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg" alt="">
+        <div class="listing-body">
+          <h3><a href="property.html">Luxury Penthouse</a></h3>
+          <p class="muted">Kolkata • 2500 sq.ft • Rooftop Access</p>
+          <div class="listing-footer">
+            <span class="price">₹1.9 Cr</span>
+            <a href="property.html" class="btn-sm">Details</a>
+          </div>
+        </div>
+      </article>
+
     </div>
 
     <div class="pagination container">
-      <a class="page">Prev</a>
-      <a class="page active">1</a>
-      <a class="page">2</a>
-      <a class="page">3</a>
-      <a class="page">Next</a>
+      <a href="#" class="page">Prev</a>
+      <a href="#" class="page">1</a>
+      <a href="#" class="page">2</a>
+      <a href="#" class="page">3</a>
+      <a href="#" class="page">Next</a>
     </div>
+
   </section>
 
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-col">
-        <h4>RealEstateClone</h4>
+        <h4>RealEstate</h4>
         <p>Trusted property listings across India.</p>
       </div>
       <div class="footer-col">
@@ -94,5 +167,42 @@
     </div>
     <div class="footer-bottom container">© 2025 RealEstateClone</div>
   </footer>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const pages = {
+      1: document.querySelectorAll(".listing:not(.page-2):not(.page-3)"),
+      2: document.querySelectorAll(".listing.page-2"),
+      3: document.querySelectorAll(".listing.page-3"),
+    };
+
+    const pageButtons = document.querySelectorAll(".page");
+    let current = 1;
+
+    function showPage(num) {
+      current = num;
+
+      document.querySelectorAll(".listing").forEach(l => l.style.display = "none");
+
+      pages[num].forEach(l => l.style.display = "flex");
+
+      pageButtons.forEach(btn => btn.classList.remove("active"));
+      pageButtons.forEach(btn => {
+        if (btn.textContent == num) btn.classList.add("active");
+      });
+    }
+
+    pageButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (btn.textContent === "Prev" && current > 1) showPage(current - 1);
+        else if (btn.textContent === "Next" && current < 3) showPage(current + 1);
+        else if (!isNaN(parseInt(btn.textContent))) showPage(parseInt(btn.textContent));
+      });
+    });
+
+    showPage(1);
+  });
+  </script>
+
 </body>
 </html>
